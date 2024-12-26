@@ -2,7 +2,7 @@
 FROM node:18-alpine AS build
 WORKDIR /src
 COPY package*.json ./
-RUN npm install
+RUN npm install --dev
 COPY . .
 COPY --from=config config.ts src/app/config.ts
 COPY --from=config rules.tsx src/app/rules.tsx
