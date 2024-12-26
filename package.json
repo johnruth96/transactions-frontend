@@ -1,5 +1,5 @@
 {
-  "name": "ing-transactions-frontend",
+  "name": "transactions-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@mui/icons-material": "^6.1.8",
+    "@mui/material": "^6.1.8",
+    "@mui/x-data-grid-premium": "^7.22.3",
+    "@reduxjs/toolkit": "^2.3.0",
+    "@tanstack/react-router": "^1.82.2",
+    "@tanstack/router-devtools": "^1.82.2",
+    "bootstrap": "^5.3.3",
+    "dayjs": "^1.11.13",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-oidc-context": "^3.2.0",
+    "react-redux": "^9.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

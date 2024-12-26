@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Business logic
+src/app/config.ts
+src/app/rules.tsx
+
+# tanstack router
+src/routeTree.gen.ts
