@@ -11,6 +11,7 @@ const recordsAdapter = createEntityAdapter<RecordProxy>({})
 const categoryAdapter = createEntityAdapter<Category>({})
 const contractAdapter = createEntityAdapter<Contract>({})
 
+// @ts-ignore
 const upsertTransaction = async (dispatch, queryFulfilled) => {
     try {
         const {data} = await queryFulfilled
@@ -46,7 +47,7 @@ export const transactionApi = createApi({
         getTransactions: builder.query<EntityState<Transaction, number>, void>({
             query: () => `transactions/`,
             providesTags: ['Transaction'],
-            transformResponse: (response: Transaction[], meta, arg) => {
+            transformResponse: (response: Transaction[]) => {
                 return transactionsAdapter.addMany(
                     transactionsAdapter.getInitialState(),
                     response
@@ -58,7 +59,7 @@ export const transactionApi = createApi({
                 url: `transactions/${id}/hide/`,
                 method: 'POST',
             }),
-            async onQueryStarted(arg, {dispatch, queryFulfilled}) {
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 await upsertTransaction(dispatch, queryFulfilled)
             },
         }),
@@ -67,7 +68,7 @@ export const transactionApi = createApi({
                 url: `transactions/${id}/show/`,
                 method: 'POST',
             }),
-            async onQueryStarted(arg, {dispatch, queryFulfilled}) {
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 await upsertTransaction(dispatch, queryFulfilled)
             },
         }),
@@ -76,7 +77,7 @@ export const transactionApi = createApi({
                 url: `transactions/${id}/bookmark/`,
                 method: 'POST',
             }),
-            async onQueryStarted(arg, {dispatch, queryFulfilled}) {
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 await upsertTransaction(dispatch, queryFulfilled)
             },
         }),
@@ -85,7 +86,7 @@ export const transactionApi = createApi({
                 url: `transactions/${id}/unbookmark/`,
                 method: 'POST',
             }),
-            async onQueryStarted(arg, {dispatch, queryFulfilled}) {
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 await upsertTransaction(dispatch, queryFulfilled)
             },
         }),
@@ -106,7 +107,7 @@ export const transactionApi = createApi({
                 method: 'POST',
                 body: records,
             }),
-            async onQueryStarted(payload, {dispatch, queryFulfilled}) {
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 await upsertTransaction(dispatch, queryFulfilled)
             },
         }),
@@ -122,7 +123,7 @@ export const transactionApi = createApi({
         }),
         getCategories: builder.query<EntityState<Category, number>, void>({
             query: () => `categories/`,
-            transformResponse: (response: Category[], meta, arg) => {
+            transformResponse: (response: Category[]) => {
                 return categoryAdapter.addMany(
                     categoryAdapter.getInitialState(),
                     response
@@ -131,7 +132,7 @@ export const transactionApi = createApi({
         }),
         getContracts: builder.query<EntityState<Contract, number>, void>({
             query: () => `contracts/`,
-            transformResponse: (response: Contract[], meta, arg) => {
+            transformResponse: (response: Contract[]) => {
                 return contractAdapter.addMany(
                     contractAdapter.getInitialState(),
                     response
@@ -144,7 +145,7 @@ export const transactionApi = createApi({
         getRecords: builder.query<EntityState<RecordProxy, number>, void>({
             query: () => `records/`,
             providesTags: ['Record'],
-            transformResponse: (response: RecordProxy[], meta, arg) => {
+            transformResponse: (response: RecordProxy[]) => {
                 return recordsAdapter.addMany(
                     recordsAdapter.getInitialState(),
                     response
@@ -161,7 +162,7 @@ export const transactionApi = createApi({
                 body: payload,
             }),
             invalidatesTags: ['Transaction'],
-            async onQueryStarted(arg, {dispatch, queryFulfilled}) {
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 try {
                     const {data} = await queryFulfilled
 
@@ -185,7 +186,7 @@ export const transactionApi = createApi({
                 method: 'PATCH',
                 body: payload,
             }),
-            async onQueryStarted(arg, {dispatch, queryFulfilled}) {
+            async onQueryStarted(_, {dispatch, queryFulfilled}) {
                 try {
                     const {data} = await queryFulfilled
 

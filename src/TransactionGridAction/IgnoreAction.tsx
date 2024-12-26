@@ -5,7 +5,6 @@ import {
 } from '../redux/api'
 import { GridActionsCellItem } from '@mui/x-data-grid-premium'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import React from 'react'
 import { TransactionState } from '../app/types'
 
 const IgnoreButton = ({ row }: ButtonProps) => {

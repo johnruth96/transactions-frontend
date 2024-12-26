@@ -6,7 +6,8 @@ const matchTransaction = (transaction: Transaction, rule: TransformRule) => {
         if (cond.operator === "equals") {
             return transaction[cond.field] === cond.value
         } else if (cond.operator === "startsWith") {
-            return transaction[cond.field].startsWith(cond.value)
+            const value = transaction[cond.field]
+            return typeof value === "string" ? value.startsWith(cond.value) : false
         }
     })
 }
@@ -67,6 +68,7 @@ class Transformer {
                             record.contract = value
                         }
                     } else {
+                        // @ts-ignore
                         record[attribute] = value
                     }
                 }

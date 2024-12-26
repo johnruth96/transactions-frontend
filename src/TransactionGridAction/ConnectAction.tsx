@@ -1,11 +1,12 @@
-import { ButtonProps } from './types'
-import { GridActionsCellItem } from '@mui/x-data-grid-premium'
-import { Link } from '@mui/icons-material'
-import React, { useMemo, useState } from 'react'
-import { Box, Button, Modal, SxProps } from '@mui/material'
-import { useSetRecordsMutationMutation } from '../redux/api'
-import { RecordGrid } from '../RecordGrid'
-import { GridInitialStatePremium } from '@mui/x-data-grid-premium/models/gridStatePremium'
+import {ButtonProps} from './types'
+import {GridActionsCellItem} from '@mui/x-data-grid-premium'
+import {Link} from '@mui/icons-material'
+import {useMemo, useState} from 'react'
+import {Box, Button, Modal, SxProps} from '@mui/material'
+import {useSetRecordsMutationMutation} from '../redux/api'
+import {RecordGrid} from '../RecordGrid'
+import {GridInitialStatePremium} from '@mui/x-data-grid-premium/models/gridStatePremium'
+import {GridRowSelectionModel} from "@mui/x-data-grid/models/gridRowSelectionModel";
 
 const style: SxProps = {
     position: 'absolute',
@@ -33,8 +34,9 @@ const footerStyle: SxProps = {
     textAlign: 'end',
 }
 
-export const ConnectAction = ({ row }: ButtonProps) => {
+export const ConnectAction = ({row}: ButtonProps) => {
     const getRowSelectionModel = () => {
+        // @ts-ignore
         return row.records.map((r) => r.id)
     }
 
@@ -76,11 +78,16 @@ export const ConnectAction = ({ row }: ButtonProps) => {
         }
     }, [row])
 
+    const handleRowSelectionModelChange = (rowSelectionModel: GridRowSelectionModel) => {
+        // @ts-ignore
+        setSelectionModel(rowSelectionModel)
+    }
+
     return (
         <div>
             <GridActionsCellItem
                 label="Un-ignore"
-                icon={<Link />}
+                icon={<Link/>}
                 onClick={handleOpen}
                 disabled={row.is_ignored}
             />
@@ -90,7 +97,7 @@ export const ConnectAction = ({ row }: ButtonProps) => {
                     <Box sx={bodyStyle}>
                         <RecordGrid
                             rowSelectionModel={selectionModel}
-                            onRowSelectionModelChange={setSelectionModel}
+                            onRowSelectionModelChange={handleRowSelectionModelChange}
                             density={'compact'}
                             pagination
                             headerFilters
@@ -102,7 +109,7 @@ export const ConnectAction = ({ row }: ButtonProps) => {
                         <Button onClick={handleClose}>Abbrechen</Button>
                         <Button
                             onClick={handleSubmit}
-                            sx={{ mr: 1 }}
+                            sx={{mr: 1}}
                             variant={'contained'}
                         >
                             Verbinden

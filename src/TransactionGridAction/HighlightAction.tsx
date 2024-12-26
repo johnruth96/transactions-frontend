@@ -5,7 +5,6 @@ import {
 } from '../redux/api'
 import { GridActionsCellItem } from '@mui/x-data-grid-premium'
 import { Bookmark, BookmarkBorder } from '@mui/icons-material'
-import React from 'react'
 
 const UnHighlightButton = ({ row }: ButtonProps) => {
     const [trigger, {}] = useRemoveBookmarkTransactionMutation()

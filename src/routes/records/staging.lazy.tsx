@@ -1,5 +1,4 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import React from 'react'
 import { getDetailPanelContent } from '../../RecordGridDetailPanel'
 import { RecordGrid } from '../../RecordGrid'
 import { useAppSelector } from '../../redux/hooks'
@@ -79,7 +78,7 @@ const CustomToolbar = () => {
 }
 
 export const StagingAreaView = ({}) => {
-    const [update, { isLoading }] = useChangeRecordMutationMutation()
+    const [update, _] = useChangeRecordMutationMutation()
     const records = useAppSelector(recordSelectors.selectAll)
 
     const ids = records

@@ -1,4 +1,4 @@
-import React, {PropsWithChildren} from "react";
+import {PropsWithChildren} from "react";
 import {useAuth} from "react-oidc-context";
 import {LoadingPage} from "./LoadingPage";
 import {ErrorPage} from "./ErrorPage";

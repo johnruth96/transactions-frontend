@@ -1,7 +1,6 @@
 import { GridRowParams } from '@mui/x-data-grid'
 import { RecordProxy } from './app/types'
 import { Box } from '@mui/material'
-import React from 'react'
 import { TransactionGrid } from './TransactionGrid'
 
 export const RecordGridDetailPanel = ({ row }: GridRowParams<RecordProxy>) => {

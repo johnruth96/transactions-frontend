@@ -4,7 +4,7 @@ import {
     GridColDef,
     GridRowClassNameParams,
 } from '@mui/x-data-grid-premium'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { recordSelectors, transactionSelectors } from './redux/api'
 import dayjs from 'dayjs'
 import { getTransactionState, Transaction, TransactionState } from './app/types'

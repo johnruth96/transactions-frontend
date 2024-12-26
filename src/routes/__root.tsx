@@ -1,7 +1,6 @@
 import {createRootRoute, Outlet} from '@tanstack/react-router'
 import {TanStackRouterDevtools} from '@tanstack/router-devtools'
 import {Box, Divider, Drawer, List} from '@mui/material'
-import React from 'react'
 import {MenuLink} from "./MenuLink.tsx";
 import {LogoutButton} from "../auth/LogoutButton.tsx";
 import {FetchRemoteItem} from "../Fetch.tsx";

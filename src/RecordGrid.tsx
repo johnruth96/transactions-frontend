@@ -3,7 +3,7 @@ import {
     DataGridPremiumProps,
     GridColDef,
 } from '@mui/x-data-grid-premium'
-import React, { useMemo } from 'react'
+import  { useMemo } from 'react'
 import {
     categorySelectors,
     contractSelectors,

@@ -1,4 +1,3 @@
-import React from "react";
 import {ListItem, ListItemButton, ListItemText} from "@mui/material";
 import {useFetchFromRemoteMutation} from "./redux/api.ts";
 import green from "@mui/material/colors/green";

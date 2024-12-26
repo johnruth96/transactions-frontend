@@ -11,6 +11,7 @@ import {AuthProvider} from "./auth/AuthProvider.tsx";
 import Transformer from "./transform/transformer.ts";
 import {TRANSFORM_RULES} from "./app/rules.tsx";
 
+// @ts-ignore
 import 'bootstrap/dist/css/bootstrap.css'
 
 // Material UI DataGrid
@@ -35,6 +36,7 @@ declare module '@tanstack/react-router' {
     }
 }
 
+// @ts-ignore
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>

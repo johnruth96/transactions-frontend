@@ -2,7 +2,6 @@ import { GridRowParams } from '@mui/x-data-grid'
 import { Transaction } from './app/types'
 import { Box } from '@mui/material'
 import { RecordGrid } from './RecordGrid'
-import React from 'react'
 
 const TransactionGridDetailPanel = ({ row }: GridRowParams<Transaction>) => {
     return (

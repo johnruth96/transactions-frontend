@@ -1,6 +1,5 @@
 import {ListItem, ListItemButton, ListItemText} from "@mui/material";
 import {useAuth} from "react-oidc-context";
-import React from "react";
 import red from "@mui/material/colors/red";
 
 export const LogoutButton = () => {
