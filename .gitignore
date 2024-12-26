@@ -26,6 +26,3 @@ dist-ssr
 # Business logic
 src/app/config.ts
 src/app/rules.tsx
-
-# tanstack router
-src/routeTree.gen.ts
