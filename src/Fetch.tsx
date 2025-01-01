@@ -22,7 +22,7 @@ export const FetchRemoteItem = () => {
     return (
         <ListItem disablePadding>
             <ListItemButton onClick={handleClick} disabled={isLoading}>
-                <ListItemText primary={"Fetch from Remote"} sx={sx}/>
+                <ListItemText primary={"Fetch"} secondary={"Records from Finance API"} sx={sx}/>
             </ListItemButton>
         </ListItem>
     )

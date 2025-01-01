@@ -111,6 +111,14 @@ export const transactionApi = createApi({
                 await upsertTransaction(dispatch, queryFulfilled)
             },
         }),
+        importCsv: builder.mutation<void, string[]>({
+            query: (contents) => ({
+                url: `transactions/import/`,
+                method: 'POST',
+                body: contents,
+            }),
+            invalidatesTags: ['Transaction'],
+        }),
         /*
          Finance API
          */
@@ -275,4 +283,5 @@ export const {
     useDeleteRecordsMutationMutation,
     usePublishRecordsMutationMutation,
     useFetchFromRemoteMutation,
+    useImportCsvMutation
 } = transactionApi

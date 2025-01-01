@@ -16,11 +16,18 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const ImportLazyImport = createFileRoute('/import')()
 const IndexLazyImport = createFileRoute('/')()
 const RecordsIndexLazyImport = createFileRoute('/records/')()
 const RecordsStagingLazyImport = createFileRoute('/records/staging')()
 
 // Create/Update Routes
+
+const ImportLazyRoute = ImportLazyImport.update({
+  id: '/import',
+  path: '/import',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/import.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
@@ -53,6 +60,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/import': {
+      id: '/import'
+      path: '/import'
+      fullPath: '/import'
+      preLoaderRoute: typeof ImportLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/records/staging': {
       id: '/records/staging'
       path: '/records/staging'
@@ -74,12 +88,14 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/import': typeof ImportLazyRoute
   '/records/staging': typeof RecordsStagingLazyRoute
   '/records': typeof RecordsIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/import': typeof ImportLazyRoute
   '/records/staging': typeof RecordsStagingLazyRoute
   '/records': typeof RecordsIndexLazyRoute
 }
@@ -87,27 +103,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/import': typeof ImportLazyRoute
   '/records/staging': typeof RecordsStagingLazyRoute
   '/records/': typeof RecordsIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/records/staging' | '/records'
+  fullPaths: '/' | '/import' | '/records/staging' | '/records'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/records/staging' | '/records'
-  id: '__root__' | '/' | '/records/staging' | '/records/'
+  to: '/' | '/import' | '/records/staging' | '/records'
+  id: '__root__' | '/' | '/import' | '/records/staging' | '/records/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  ImportLazyRoute: typeof ImportLazyRoute
   RecordsStagingLazyRoute: typeof RecordsStagingLazyRoute
   RecordsIndexLazyRoute: typeof RecordsIndexLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  ImportLazyRoute: ImportLazyRoute,
   RecordsStagingLazyRoute: RecordsStagingLazyRoute,
   RecordsIndexLazyRoute: RecordsIndexLazyRoute,
 }
@@ -123,12 +142,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/import",
         "/records/staging",
         "/records/"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/import": {
+      "filePath": "import.lazy.tsx"
     },
     "/records/staging": {
       "filePath": "records/staging.lazy.tsx"

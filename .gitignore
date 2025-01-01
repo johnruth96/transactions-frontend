@@ -23,6 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# Build script
+./build.sh
+
 # Business logic
 src/app/config.ts
 src/app/rules.tsx
