@@ -28,7 +28,7 @@ export const ImportView = ({}) => {
                 }
             })
 
-            reader.readAsText(item)
+            reader.readAsDataURL(item)
         })
     }
 
