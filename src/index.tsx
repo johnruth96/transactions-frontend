@@ -4,7 +4,6 @@ import {store} from './redux/store'
 import {Provider} from 'react-redux'
 import {createRouter, RouterProvider} from '@tanstack/react-router'
 import {routeTree} from './routeTree.gen'
-import {transactionApi} from './redux/api'
 import {DATA_GRID_LICENSE} from "./app/config.ts";
 import {LicenseInfo} from '@mui/x-license';
 import {AuthProvider} from "./auth/AuthProvider.tsx";
@@ -19,12 +18,6 @@ LicenseInfo.setLicenseKey(DATA_GRID_LICENSE)
 
 // Transformer
 Transformer.setRules(TRANSFORM_RULES)
-
-// Fetch API
-store.dispatch(transactionApi.endpoints.getTransactions.initiate())
-store.dispatch(transactionApi.endpoints.getRecords.initiate())
-store.dispatch(transactionApi.endpoints.getCategories.initiate())
-store.dispatch(transactionApi.endpoints.getContracts.initiate())
 
 // Create a new router instance
 const router = createRouter({routeTree})

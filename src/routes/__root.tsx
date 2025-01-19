@@ -4,11 +4,23 @@ import {Box, Divider, Drawer, List} from '@mui/material'
 import {MenuLink} from "../MenuLink.tsx";
 import {LogoutButton} from "../auth/LogoutButton.tsx";
 import {FetchRemoteItem} from "../Fetch.tsx";
+import {useAppDispatch} from "../redux/hooks.ts";
+import {useEffect} from "react";
+import {transactionApi} from "../redux/api.ts";
 
 const drawerWidth = "240px"
 
-export const Route = createRootRoute({
-    component: () => (
+const App = () => {
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(transactionApi.endpoints.getTransactions.initiate())
+        dispatch(transactionApi.endpoints.getRecords.initiate())
+        dispatch(transactionApi.endpoints.getCategories.initiate())
+        dispatch(transactionApi.endpoints.getContracts.initiate())
+    }, [dispatch])
+
+    return (
         <Box sx={{display: 'flex', height: "100%"}}>
             <Drawer
                 sx={{
@@ -45,5 +57,9 @@ export const Route = createRootRoute({
 
             <TanStackRouterDevtools/>
         </Box>
-    ),
+    )
+}
+
+export const Route = createRootRoute({
+    component: App,
 })
